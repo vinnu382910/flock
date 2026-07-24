@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_URL || 'https://flock-ug0t.onrender.com/api',
+  baseURL: process.env.REACT_APP_BACKEND_URL || 'https://flock-backend-4t6v.onrender.com/api',
   withCredentials: true
 });
 
