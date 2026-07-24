@@ -5,13 +5,28 @@ const api = axios.create({
   withCredentials: true
 });
 
+// Interceptor to attach x-session-token header as a cookie-blocking fallback
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('flock_token');
+  if (token) {
+    config.headers['x-session-token'] = token;
+  }
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
 export const login = async (username, password) => {
   const response = await api.post('/auth/login', { username, password });
+  if (response.data && response.data.token) {
+    localStorage.setItem('flock_token', response.data.token);
+  }
   return response.data;
 };
 
 export const logout = async () => {
   const response = await api.post('/auth/logout');
+  localStorage.removeItem('flock_token');
   return response.data;
 };
 

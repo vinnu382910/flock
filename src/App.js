@@ -28,9 +28,11 @@ function App() {
         setUser(data.user);
       } else {
         setUser(null);
+        localStorage.removeItem('flock_token');
       }
     } catch (err) {
       setUser(null);
+      localStorage.removeItem('flock_token');
     } finally {
       setLoading(false);
     }
