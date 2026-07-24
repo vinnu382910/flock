@@ -400,5 +400,3 @@ Meter
 # Notes
 
 The APIs documented above were identified through browser network inspection while interacting with the portal.
-
-The backend built for this assignment consumes these internal APIs and exposes a simplified REST API for external applications.
